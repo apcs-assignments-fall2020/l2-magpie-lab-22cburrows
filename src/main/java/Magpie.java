@@ -131,15 +131,34 @@ public class Magpie
     public int findWord(String str, String word) {
         String str2 = str.toLowerCase();
         int num = str2.indexOf(word);
-        if ((str2.charAt(num - 1) == " ".charAt(0)) || (str2.charAt(num + 2) == " ".charAt(0))){
+        String space = " ";
+        if (num == -1)
+        {
             return num;
         }
-        else{
+        else if (num == 0)
+        {
+            if (str2.charAt(num + 2) == space.charAt(0))
+            {
+                return num;
+            }
+        }
+        else if (num == str.length())
+        {
+            if (str2.charAt(num - 1) == space.charAt(0))
+            {
+                return num;
+            }
+        }
+        else if (str2.charAt(num + 2) == space.charAt(0) && (str2.charAt(num - 1) == space.charAt(0)))
+        {
+            return num;
+        }
+        else
+        {
             return -1;
         }
     }
-
-    
     // We will work on the following methods later!
 
     /**
@@ -149,7 +168,8 @@ public class Magpie
      * @return the transformed statement
      */
     public String transformIWantStatement(String statement)
-    {   String response = "Would you really be happy if you had " + statement.substring(7, (statement.length())) + "?";
+    {   
+        String response = "Would you really be happy if you had " + statement.substring(7, (statement.length())) + "?";
         return response;
      }
 

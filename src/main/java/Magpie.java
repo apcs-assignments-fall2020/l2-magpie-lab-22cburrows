@@ -42,6 +42,37 @@ public class Magpie
         {
             response = "Tell me more about your family.";
         }
+        else if (statement.indexOf("cat") >= 0
+                || statement.indexOf("dog") >= 0)
+        {
+            response = "Tell me more about your pets.";
+        }
+        else if (statement.indexOf("Mr.") >= 0)
+        {
+            response = "He sounds like a good teacher.";
+        }
+        else if (statement.indexOf("Mrs.") >= 0)
+        {
+            response = "She sounds like a good teacher. ";
+        }
+        else if (statement.trim() == "")
+        {
+            response = "Say something, please.";
+        }
+        else if (statement.indexOf("sad") >= 0)
+        {
+            response = "Would you like some tissues?";
+        }
+        else if (statement.indexOf("guitar") >= 0
+                || statement.indexOf("drums") >= 0
+                || statement.indexOf("piano") >= 0)
+        {
+            response = "I bet you are really good at making music.";
+        }
+        else if (statement.indexOf("thank") >= 0)
+        {
+            response = "You are welcome.";
+        }
         else
         {
             response = getRandomResponse();
@@ -55,7 +86,7 @@ public class Magpie
      */
     public String getRandomResponse()
     {
-        final int NUMBER_OF_RESPONSES = 4;
+        final int NUMBER_OF_RESPONSES = 6;
         double r = Math.random();
         int whichResponse = (int)(r * NUMBER_OF_RESPONSES);
         String response = "";
@@ -71,6 +102,14 @@ public class Magpie
         else if (whichResponse == 2)
         {
             response = "Do you really think so?";
+        }
+        else if (whichResponse == 1)
+        {
+            response = "Are you compleatly sure?";
+        }
+        else if (whichResponse == 2)
+        {
+            response = "No way!";
         }
         else if (whichResponse == 3)
         {
@@ -90,7 +129,14 @@ public class Magpie
     // The method returns the index of the first character in word
     // if it is found, and returns -1 otherwise. 
     public int findWord(String str, String word) {
-        return -1;
+        String str2 = str.toLowerCase();
+        int num = str2.indexOf(word);
+        if ((str2.charAt(num - 1) == " ".charAt(0)) || (str2.charAt(num + 2) == " ".charAt(0))){
+            return num;
+        }
+        else{
+            return -1;
+        }
     }
 
     
@@ -103,10 +149,9 @@ public class Magpie
      * @return the transformed statement
      */
     public String transformIWantStatement(String statement)
-    {
-        //your code here
-        return "";
-    }
+    {   String response = "Would you really be happy if you had " + statement.substring(7, (statement.length())) + "?";
+        return response;
+     }
 
     /**
      * Take a statement with "I <something> you" and transform it into 
@@ -116,8 +161,8 @@ public class Magpie
      */
     public String transformIYouStatement(String statement)
     {
-        //your code here
-        return "";
+        String response = "Why do you " + statement.substring(2, statement.indexOf("you")) + "me?";
+        return response;
     }
 
     /**
@@ -128,8 +173,8 @@ public class Magpie
      */
     public String transformIWantToStatement(String statement)
     {
-        // your code here
-        return "";
+        String response = "What would it mean to " + statement.substring(10, statement.length()) + "?";
+        return response;
     }
 
 
@@ -143,7 +188,7 @@ public class Magpie
      */
     public String transformYouMeStatement(String statement)
     {
-        // your code here
-        return "";
+        String response = "What makes you think that I " + statement.substring(statement.indexOf("you") + 4, statement.indexOf("me")) + "you?";
+        return response;
     }
 }

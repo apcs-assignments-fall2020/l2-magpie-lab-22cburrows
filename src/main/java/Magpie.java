@@ -12,6 +12,49 @@
  */
 public class Magpie
 {
+    // Checks to see if the String word appears as a whole word
+    // in the String str (in this case, a "whole word" means that 
+    // word is not just a substring of some larger word in str)
+
+    // This method should work regardless of the capitalization 
+    // of str or word
+
+    // The method returns the index of the first character in word
+    // if it is found, and returns -1 otherwise. 
+    public int findWord(String str, String word) {
+        String str2 = str.toLowerCase();
+        int num = str2.indexOf(word);
+        int final2 = 0;
+        String space = " ";
+        if (num == -1)
+        {
+            final2 = num;
+        }
+        else if (num == 0)
+        {
+            if (str2.charAt(num + word.length()) == space.charAt(0))
+            {
+                final2 = num;
+            }
+        }
+        else if (num == (str.length() - word.length()))
+        {
+            if (str2.charAt(num - 1) == space.charAt(0))
+            {
+                final2 = num;
+            }
+        }
+        else if ((str2.charAt(num + word.length()) == space.charAt(0)) && ((str2.charAt(num - 1) == space.charAt(0))))
+        {
+            final2 = num;
+        }
+        else
+        {
+            final2 = -1;
+        }
+        return final2;
+    }
+    
     /**
      * Get a default greeting   
      * @return a greeting
@@ -31,27 +74,27 @@ public class Magpie
     public String getResponse(String statement)
     {
         String response = "";
-        if (statement.indexOf("no") >= 0)
+        if (findWord(statement, "no") >= 0)
         {
             response = "Why so negative?";
         }
-        else if (statement.indexOf("mother") >= 0
-                || statement.indexOf("father") >= 0
-                || statement.indexOf("sister") >= 0
-                || statement.indexOf("brother") >= 0)
+        else if (findWord(statement, "mother") >= 0
+                || findWord(statement, "father") >= 0
+                || findWord(statement, "sister") >= 0
+                || findWord(statement, "brother") >= 0)
         {
             response = "Tell me more about your family.";
         }
-        else if (statement.indexOf("cat") >= 0
-                || statement.indexOf("dog") >= 0)
+        else if (findWord(statement, "cat") >= 0
+                || findWord(statement, "dog") >= 0)
         {
             response = "Tell me more about your pets.";
         }
-        else if (statement.indexOf("Mr.") >= 0)
+        else if (findWord(statement, "Mr.") >= 0)
         {
             response = "He sounds like a good teacher.";
         }
-        else if (statement.indexOf("Mrs.") >= 0)
+        else if (findWord(statement, "Mrs.") >= 0)
         {
             response = "She sounds like a good teacher. ";
         }
@@ -59,17 +102,17 @@ public class Magpie
         {
             response = "Say something, please.";
         }
-        else if (statement.indexOf("sad") >= 0)
+        else if (findWord(statement, "sad") >= 0)
         {
             response = "Would you like some tissues?";
         }
-        else if (statement.indexOf("guitar") >= 0
-                || statement.indexOf("drums") >= 0
-                || statement.indexOf("piano") >= 0)
+        else if (findWord(statement, "guitar") >= 0
+                || findWord(statement, "drums") >= 0
+                || findWord(statement, "piano") >= 0)
         {
             response = "I bet you are really good at making music.";
         }
-        else if (statement.indexOf("thank") >= 0)
+        else if (findWord(statement, "thank") >= 0)
         {
             response = "You are welcome.";
         }
@@ -119,46 +162,6 @@ public class Magpie
         return response;
     }
 
-    // Checks to see if the String word appears as a whole word
-    // in the String str (in this case, a "whole word" means that 
-    // word is not just a substring of some larger word in str)
-
-    // This method should work regardless of the capitalization 
-    // of str or word
-
-    // The method returns the index of the first character in word
-    // if it is found, and returns -1 otherwise. 
-    public int findWord(String str, String word) {
-        String str2 = str.toLowerCase();
-        int num = str2.indexOf(word);
-        String space = " ";
-        if (num == -1)
-        {
-            return num;
-        }
-        else if (num == 0)
-        {
-            if (str2.charAt(num + 2) == space.charAt(0))
-            {
-                return num;
-            }
-        }
-        else if (num == str.length())
-        {
-            if (str2.charAt(num - 1) == space.charAt(0))
-            {
-                return num;
-            }
-        }
-        else if (str2.charAt(num + 2) == space.charAt(0) && (str2.charAt(num - 1) == space.charAt(0)))
-        {
-            return num;
-        }
-        else
-        {
-            return -1;
-        }
-    }
     // We will work on the following methods later!
 
     /**

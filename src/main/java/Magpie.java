@@ -77,6 +77,25 @@ public class Magpie
         if (findWord(statement, "no") >= 0)
         {
             response = "Why so negative?";
+        //testing the functions below
+        }
+        else if (findWord(statement, "I want ") >= 0)
+        {
+            response = transformIWantStatement(statement);
+        }
+        else if (findWord(statement, "I ") >= 0
+                && findWord(statement, " you") >= 0)
+        {
+            response =  transformIYouStatement(statement);
+        }
+        else if (findWord(statement, "I want to ") >= 0)
+        {
+            response =  transformIWantToStatement(statement);
+        }
+        else if (findWord(statement, "you ") >= 0
+                && findWord(statement, " me") >= 0)
+        {
+            response =  transformYouMeStatement(statement);
         }
         else if (findWord(statement, "mother") >= 0
                 || findWord(statement, "father") >= 0
@@ -199,8 +218,6 @@ public class Magpie
         String response = "What would it mean to " + statement.substring(10, statement.length()) + "?";
         return response;
     }
-
-
 
 
     /**
